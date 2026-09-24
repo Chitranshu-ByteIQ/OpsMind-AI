@@ -1,0 +1,45 @@
+# ==============================
+# LLM & Agent Framework
+# ==============================
+langchain
+langgraph
+langchain-groq
+
+# ==============================
+# UI
+# ==============================
+streamlit
+
+# ==============================
+# Data Validation & Configuration
+# ==============================
+pydantic
+pydantic-settings
+python-dotenv
+
+# ==============================
+# API / HTTP
+# ==============================
+requests
+
+# ==============================
+# GitHub
+# ==============================
+PyGithub
+
+# ==============================
+# Gmail API
+# ==============================
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+
+# ==============================
+# Web Research
+# ==============================
+tavily-python
+
+# ==============================
+# Persistence
+# ==============================
+SQLAlchemy
