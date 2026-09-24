@@ -1,14 +1,12 @@
-from langchain_groq import ChatGroq
-import os
-from dotenv import load_dotenv
+from app.agents.runtime import get_llm
 
-load_dotenv()
 
-model = ChatGroq(
-    model=os.getenv('GROQ_MODEL'),
-    api_key=os.getenv('GROQ_API_KEY')
-)
-
-response = model.invoke("hello world; passing this for testing the api key")
-
-print(response.content)
+def test_llm_factory_requires_configuration(monkeypatch):
+    monkeypatch.setattr("app.agents.runtime.settings.groq_api_key", None)
+    monkeypatch.setattr("app.agents.runtime.settings.groq_model", None)
+    try:
+        get_llm()
+    except RuntimeError as exc:
+        assert "LLM configuration" in str(exc)
+    else:
+        raise AssertionError("Missing configuration should not create an LLM")

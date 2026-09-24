@@ -42,4 +42,11 @@ tavily-python
 # ==============================
 # Persistence
 # ==============================
+fastapi[standard]
+uvicorn[standard]
+
+# ==============================
+# Persistence
+# ==============================
 SQLAlchemy
+pytest
