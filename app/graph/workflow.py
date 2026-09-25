@@ -3,6 +3,8 @@ from langgraph.graph import StateGraph, START, END
 from app.graph.state import OpsMindState
 
 from app.graph.nodes import (
+    local_lookup_node,
+    route_after_local_lookup,
     supervisor_node,
     planner_node,
     github_node,
@@ -11,6 +13,8 @@ from app.graph.nodes import (
     research_node,
     multi_source_node,
     synthesizer_node,
+    critic_node,
+    route_after_critic,
 )
 
 from app.graph.edges import route_agent
@@ -52,6 +56,7 @@ def build_workflow():
         gmail_node,
     )
 
+    graph.add_node("local_lookup", local_lookup_node)
     graph.add_node(
         "research",
         research_node,
@@ -62,6 +67,7 @@ def build_workflow():
         "synthesizer",
         synthesizer_node,
     )
+    graph.add_node("critic", critic_node)
 
     # -------------------------
     # Starting point
@@ -69,8 +75,9 @@ def build_workflow():
 
     graph.add_edge(
         START,
-        "supervisor",
+        "local_lookup",
     )
+    graph.add_conditional_edges("local_lookup", route_after_local_lookup, {"supervisor": "supervisor", "end": END})
 
     # -------------------------
     # Supervisor → Planner
@@ -128,8 +135,9 @@ def build_workflow():
 
     graph.add_edge(
         "synthesizer",
-        END,
+        "critic",
     )
+    graph.add_conditional_edges("critic", route_after_critic, {"planner": "planner", "end": END})
 
     return graph.compile()
 

@@ -14,6 +14,7 @@ class ClickUpTask(BaseModel):
     url: str | None = None
 
     assignees: list[str] = Field(default_factory=list)
+    assignee_ids: list[str] = Field(default_factory=list)
     tags: list[str] = Field(default_factory=list)
 
     due_date: datetime | None = None

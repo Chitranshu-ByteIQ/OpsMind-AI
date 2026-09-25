@@ -27,23 +27,63 @@ def api_chat(message: str) -> dict[str, Any]:
         return {"success": False, "message": "OpsMind could not reach the backend."}
 
 
+def api_post(path: str) -> dict[str, Any]:
+    try:
+        response = requests.post(f"{API_URL}{path}", timeout=120)
+        response.raise_for_status()
+        return response.json()
+    except requests.RequestException as exc:
+        return {"_error": "Refresh could not complete.", "detail": str(exc)}
+
+
 def dashboard() -> None:
     st.title("OpsMind AI")
-    st.caption("AI Command Center")
+    st.caption("Personal Work Command Center")
     payload = api_get("/api/dashboard/summary")
     if "_error" in payload:
         st.warning(payload["_error"])
         return
+    sync = payload.get("sync", {})
+    top_left, top_right = st.columns([3, 1])
+    top_left.caption(f"Last synced: {sync.get('last_sync') or 'Never'}")
+    if top_right.button("🔄 Refresh Data", use_container_width=True):
+        with st.spinner("Retrieving and saving work data…"):
+            result = api_post("/api/dashboard/refresh")
+        if "_error" in result:
+            st.error(result["_error"])
+        else:
+            failed = [name for name, value in result["sources"].items() if value["status"] == "failed"]
+            (st.warning if failed else st.success)(f"Refresh complete.{' Failed sources: ' + ', '.join(failed) if failed else ''}")
+        st.rerun()
     metrics = payload["metrics"]
-    columns = st.columns(5)
-    labels = [("open_tasks", "Open Tasks"), ("open_issues", "Issues"), ("open_pull_requests", "PRs"), ("unread_email", "Emails"), ("attention_items", "Attention")]
+    columns = st.columns(4)
+    labels = [("unread_email", "Unread Gmail"), ("open_pull_requests", "Open PRs"), ("overdue_tasks", "Overdue Tasks"), ("high_priority_tasks", "High Priority")]
     for column, (key, label) in zip(columns, labels):
         item = metrics[key]
         column.metric(label, item["value"] if item["available"] else "—")
-    st.subheader("AI Executive Summary")
+    st.subheader("Work overview")
     insights = api_get("/api/dashboard/insights").get("items", [])
     for insight in insights:
         st.info(insight["message"])
+    with st.expander("Data status", expanded=False):
+        for source, status in payload.get("sources", {}).items():
+            st.write(f"{source.title()}: {status.get('status', 'not synced')} · {status.get('item_count', 0)} items")
+            if status.get("last_error"):
+                st.warning(f"{source.title()}: {status['last_error']} (previous data preserved: {status.get('preserved_previous_data', False)})")
+    pending = api_get("/api/dashboard/actions/pending").get("items", [])
+    if pending:
+        st.subheader("Approval required")
+        for action in pending:
+            st.write(f"Create ClickUp task **{action['proposed']['name']}** in list `{action['target']['list_id']}`")
+            approve, reject = st.columns(2)
+            if approve.button("Approve", key=f"approve-{action['id']}"):
+                result = api_post(f"/api/dashboard/actions/{action['id']}/approve")
+                st.success("Action completed." if result.get("status") == "completed" else f"Action result: {result.get('status', 'unknown')}")
+                st.rerun()
+            if reject.button("Reject", key=f"reject-{action['id']}"):
+                api_post(f"/api/dashboard/actions/{action['id']}/reject")
+                st.info("Action rejected.")
+                st.rerun()
     left, right = st.columns(2)
     with left:
         st.subheader("Needs Attention")

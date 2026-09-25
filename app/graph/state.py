@@ -18,6 +18,9 @@ class OpsMindState(TypedDict, total=False):
 
     # Final synthesized response
     final_response: str
+    local_response: str
+    critic_result: dict[str, Any]
+    replan_attempts: int
 
     # Error information
     error: str

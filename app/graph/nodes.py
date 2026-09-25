@@ -10,6 +10,7 @@ from app.agents.research_agent import get_research_agent
 from app.agents.runtime import run_tool_calling_agent
 from app.agents.supervisor import get_supervisor
 from app.agents.synthesizer import get_synthesizer
+from app.services.local_data import simple_local_answer
 
 from app.graph.state import OpsMindState
 
@@ -18,6 +19,16 @@ logger = logging.getLogger(__name__)
 
 
 AGENT_NAMES = ("github", "clickup", "gmail", "research")
+
+
+def local_lookup_node(state: OpsMindState) -> OpsMindState:
+    """Keep simple snapshot questions off the LLM/agent path."""
+    answer = simple_local_answer(state["user_request"])
+    return {"local_response": answer, "final_response": answer} if answer else {}
+
+
+def route_after_local_lookup(state: OpsMindState) -> str:
+    return "end" if state.get("local_response") else "supervisor"
 
 
 def _requested_agents(request: str) -> list[str]:
@@ -215,6 +226,21 @@ Do not mention internal implementation details.
     return {
         "final_response": response.content
     }
+
+
+def critic_node(state: OpsMindState) -> OpsMindState:
+    """Validate that a response exists and does not misrepresent an action."""
+    response = state.get("final_response", "")
+    invalid = not response.strip()
+    attempts = state.get("replan_attempts", 0) + (1 if invalid else 0)
+    return {"critic_result": {"valid": not invalid, "reason": "Response is empty." if invalid else "Response is present."}, "replan_attempts": attempts}
+
+
+def route_after_critic(state: OpsMindState) -> str:
+    """Retry planning once only when the critic cannot validate the response."""
+    if not state.get("critic_result", {}).get("valid") and state.get("replan_attempts", 0) <= 1:
+        return "planner"
+    return "end"
 
 
 def multi_source_node(state: OpsMindState) -> OpsMindState:

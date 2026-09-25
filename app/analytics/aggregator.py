@@ -3,9 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from app.integrations.clickup import ClickUpIntegration
-from app.integrations.github import GitHubIntegration
-from app.tools.gmail_tools import get_gmail
+from app.data.store import load_source, source_metadata
 
 
 @dataclass
@@ -20,37 +18,14 @@ class UnifiedWorkData:
     )
 
 
-def _dump(items: list[Any]) -> list[dict[str, Any]]:
-    return [item.model_dump(mode="json") if hasattr(item, "model_dump") else item for item in items]
-
-
-def collect_dashboard_data(*, email_query: str = "is:unread newer_than:14d") -> UnifiedWorkData:
-    """Collect best-effort, read-only dashboard data without failing the entire dashboard."""
-    data = UnifiedWorkData()
-    try:
-        github = GitHubIntegration()
-        repos = github.get_repositories()
-        data.repositories = _dump(repos)
-        data.availability["github"] = True
-        for repo in repos:
-            owner, name = repo.full_name.split("/", 1)
-            data.issues.extend(_dump(github.get_issues(owner, name)))
-            data.pull_requests.extend(_dump(github.get_pull_requests(owner, name)))
-    except Exception:
-        pass
-    try:
-        clickup = ClickUpIntegration()
-        teams = clickup.get_teams().get("teams", [])
-        data.availability["clickup"] = True
-        for team in teams:
-            for space in clickup.get_spaces(str(team["id"])):
-                for work_list in clickup.get_lists(space.id):
-                    data.tasks.extend(_dump(clickup.get_tasks(work_list.id)))
-    except Exception:
-        data.availability["clickup"] = False
-    try:
-        data.messages = _dump(get_gmail().search_messages(email_query, max_results=20))
-        data.availability["gmail"] = True
-    except Exception:
-        pass
-    return data
+def collect_dashboard_data() -> UnifiedWorkData:
+    """Load persisted snapshots only; dashboard rendering never calls external APIs."""
+    metadata = {source: source_metadata(source) for source in ("github", "clickup", "gmail")}
+    return UnifiedWorkData(
+        repositories=load_source("github", "repositories.json"),
+        issues=load_source("github", "issues.json"),
+        pull_requests=load_source("github", "pull_requests.json"),
+        tasks=load_source("clickup", "tasks.json"),
+        messages=load_source("gmail", "messages.json"),
+        availability={"github": metadata["github"].get("status") in {"success", "failed"} and bool(metadata["github"].get("last_successful_sync")), "clickup": metadata["clickup"].get("status") in {"success", "failed"} and bool(metadata["clickup"].get("last_successful_sync")), "gmail": metadata["gmail"].get("status") in {"success", "failed"} and bool(metadata["gmail"].get("last_successful_sync")), "research": True},
+    )

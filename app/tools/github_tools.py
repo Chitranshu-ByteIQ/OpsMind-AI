@@ -1,18 +1,13 @@
 from langchain_core.tools import tool
 
-from app.integrations.github import GitHubIntegration
-
-
-github = GitHubIntegration()
+from app.data.store import load_source, source_metadata
 
 
 @tool
 def get_github_repositories():
     """Get repositories accessible to the authenticated GitHub user."""
     
-    repositories = github.get_repositories()
-
-    return [repository.model_dump() for repository in repositories]
+    return load_source("github", "repositories.json")
 
 
 @tool
@@ -28,13 +23,7 @@ def get_github_issues(
     bugs, tasks, and other repository work items.
     """
 
-    issues = github.get_issues(
-        owner=owner,
-        repo=repo,
-        state=state,
-    )
-
-    return [issue.model_dump() for issue in issues]
+    return [item for item in load_source("github", "issues.json") if item.get("repository") == f"{owner}/{repo}" and item.get("state") == state]
 
 
 @tool
@@ -50,17 +39,11 @@ def get_github_pull_requests(
     and understand current development activity.
     """
 
-    pull_requests = github.get_pull_requests(
-        owner=owner,
-        repo=repo,
-        state=state,
-    )
-
-    return [pull_request.model_dump() for pull_request in pull_requests]
+    return [item for item in load_source("github", "pull_requests.json") if item.get("repository") == f"{owner}/{repo}" and item.get("state") == state]
 
 
 @tool
 def get_github_user():
     """Get information about the authenticated GitHub user."""
 
-    return github.get_authenticated_user()
+    return {"login": source_metadata("github").get("authenticated_user"), "data_source": "local"}

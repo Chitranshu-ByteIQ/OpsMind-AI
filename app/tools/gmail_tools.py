@@ -1,6 +1,7 @@
 from langchain_core.tools import tool
 
 from app.integrations.gmail import GmailIntegration
+from app.services.local_data import find_email, gmail_messages
 
 
 gmail = None
@@ -30,12 +31,7 @@ def search_gmail_messages(
     - subject:project
     """
 
-    messages = get_gmail().search_messages(
-        query=query,
-        max_results=max_results,
-    )
-
-    return [message.model_dump() for message in messages]
+    return gmail_messages()[:max_results]
 
 
 @tool
@@ -47,11 +43,11 @@ def get_gmail_message(message_id: str):
     is required.
     """
 
-    message = get_gmail().get_message(message_id)
+    message = find_email(message_id)
 
     if message is None:
         return {
             "message": "Gmail message not found."
         }
 
-    return message.model_dump()
+    return message

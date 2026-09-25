@@ -32,10 +32,23 @@ class ClickUpIntegration:
 
         return response.json()
 
+    def _post(self, endpoint: str, payload: dict) -> dict:
+        response = requests.post(f"{self.BASE_URL}{endpoint}", headers=self.headers, json=payload, timeout=30)
+        response.raise_for_status()
+        return response.json()
+
+    def create_task(self, list_id: str, name: str, description: str = "") -> dict:
+        """Create a ClickUp task. Call only after an explicit human approval."""
+        return self._post(f"/list/{list_id}/task", {"name": name, "description": description})
+
     def get_teams(self) -> dict:
         """Get ClickUp teams/workspaces."""
 
         return self._get("/team")
+
+    def get_authenticated_user(self) -> dict:
+        """Return the user represented by the configured ClickUp token."""
+        return self._get("/user")
 
     def get_spaces(
         self,
@@ -104,6 +117,11 @@ class ClickUpIntegration:
                 )
                 if user.get("username")
             ]
+            assignee_ids = [
+                str(user["id"])
+                for user in task.get("assignees", [])
+                if user.get("id") is not None
+            ]
 
             tags = [
                 tag["name"]
@@ -136,6 +154,7 @@ class ClickUpIntegration:
                     ).get("priority"),
                     url=task.get("url"),
                     assignees=assignees,
+                    assignee_ids=assignee_ids,
                     tags=tags,
                     due_date=(
                         self._timestamp_to_datetime(

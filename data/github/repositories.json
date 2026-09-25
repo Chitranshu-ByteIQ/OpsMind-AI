@@ -1,0 +1,50 @@
+[
+  {
+    "name": "ai-study-assistant",
+    "full_name": "Chitranshu-ByteIQ/ai-study-assistant",
+    "description": null,
+    "url": "https://github.com/Chitranshu-ByteIQ/ai-study-assistant",
+    "private": false,
+    "default_branch": "main"
+  },
+  {
+    "name": "Chitranshu-ByteIQ",
+    "full_name": "Chitranshu-ByteIQ/Chitranshu-ByteIQ",
+    "description": "It's all about me and ByteIQ Analytics!",
+    "url": "https://github.com/Chitranshu-ByteIQ/Chitranshu-ByteIQ",
+    "private": false,
+    "default_branch": "main"
+  },
+  {
+    "name": "OpsMind-AI",
+    "full_name": "Chitranshu-ByteIQ/OpsMind-AI",
+    "description": "OpsMind AI is a multi-agent personal AI command center that unifies GitHub, ClickUp, Gmail, and web research. Built with LangChain and LangGraph, it analyzes work, prioritizes tasks, identifies blockers, plans actions, and executes approved operations with human-in-the-loop guardrails and persistent memory.",
+    "url": "https://github.com/Chitranshu-ByteIQ/OpsMind-AI",
+    "private": false,
+    "default_branch": "main"
+  },
+  {
+    "name": "Python-Assesment",
+    "full_name": "Chitranshu-ByteIQ/Python-Assesment",
+    "description": "Python assignments completed",
+    "url": "https://github.com/Chitranshu-ByteIQ/Python-Assesment",
+    "private": false,
+    "default_branch": "main"
+  },
+  {
+    "name": "QueryMind",
+    "full_name": "Chitranshu-ByteIQ/QueryMind",
+    "description": "This QueryMind an Agentic Query software",
+    "url": "https://github.com/Chitranshu-ByteIQ/QueryMind",
+    "private": false,
+    "default_branch": "main"
+  },
+  {
+    "name": "Resume-Dangal",
+    "full_name": "Chitranshu-ByteIQ/Resume-Dangal",
+    "description": "Sabka Resume Aayega, Ranking AI Karega. 😎",
+    "url": "https://github.com/Chitranshu-ByteIQ/Resume-Dangal",
+    "private": false,
+    "default_branch": "main"
+  }
+]

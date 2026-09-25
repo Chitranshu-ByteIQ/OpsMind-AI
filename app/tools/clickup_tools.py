@@ -1,16 +1,13 @@
 from langchain_core.tools import tool
 
-from app.integrations.clickup import ClickUpIntegration
-
-
-clickup = ClickUpIntegration()
+from app.data.store import load_source
 
 
 @tool
 def get_clickup_teams():
     """Get ClickUp teams available to the authenticated user."""
 
-    return clickup.get_teams()
+    return {"message": "Workspace discovery is performed during Refresh Data.", "data_source": "local"}
 
 
 @tool
@@ -22,9 +19,7 @@ def get_clickup_spaces(team_id: str):
     before looking for lists and tasks.
     """
 
-    spaces = clickup.get_spaces(team_id)
-
-    return [space.model_dump() for space in spaces]
+    return []
 
 
 @tool
@@ -35,9 +30,7 @@ def get_clickup_lists(space_id: str):
     Use this tool to discover where ClickUp tasks are organized.
     """
 
-    lists = clickup.get_lists(space_id)
-
-    return [item.model_dump() for item in lists]
+    return []
 
 
 @tool
@@ -49,6 +42,4 @@ def get_clickup_tasks(list_id: str):
     priorities, assignees, tags, and due dates.
     """
 
-    tasks = clickup.get_tasks(list_id)
-
-    return [task.model_dump() for task in tasks]
+    return load_source("clickup", "tasks.json")
