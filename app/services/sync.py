@@ -40,15 +40,25 @@ def sync_clickup() -> dict[str, Any]:
     logger.info("Refreshing personalized ClickUp data")
     client = ClickUpIntegration()
     user = client.get_authenticated_user()
-    user_id = str(user.get("user", user).get("id", ""))
+    user_details = user.get("user", user)
+    user_id = str(user_details.get("id", ""))
     tasks: list[Any] = []
+
     for team in client.get_teams().get("teams", []):
-        for space in client.get_spaces(str(team["id"])):
-            for work_list in client.get_lists(space.id):
-                tasks.extend(client.get_tasks(work_list.id))
+        tasks.extend(client.get_filtered_team_tasks(str(team["id"]), assignee_ids=[user_id]))
+
     normalized = _dump(tasks)
     mine = [task for task in normalized if user_id and user_id in {str(value) for value in task.get("assignee_ids", [])}]
-    return save_source_success("clickup", {"tasks.json": mine}, details={"authenticated_user": user.get("user", user), "visible_task_count": len(normalized), "confirmed_assigned_count": len(mine)})
+    unique_mine = list({task["id"]: task for task in mine}.values())
+    return save_source_success(
+        "clickup",
+        {"tasks.json": unique_mine},
+        details={
+            "authenticated_user": user_details,
+            "visible_task_count": len(normalized),
+            "confirmed_assigned_count": len(unique_mine),
+        },
+    )
 
 
 def refresh_all() -> dict[str, Any]:

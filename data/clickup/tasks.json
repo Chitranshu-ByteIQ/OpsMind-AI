@@ -1,1 +1,602 @@
-[]
+[
+  {
+    "id": "86d4c0nwk",
+    "name": "Training & Self-Learning (Chitranshu)",
+    "description": "Participate in scheduled GenAI and Agentic AI training sessions, capture concepts relevant to ongoing project work, and reinforce the learning through revision, practical assignments, and continued exploration of key concepts covered during the training.",
+    "status": "in progress",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4c0nwk",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [
+      "training"
+    ],
+    "due_date": "2026-09-24T22:30:00Z",
+    "date_created": "2026-09-20T20:58:08.961000Z",
+    "date_updated": "2026-09-23T05:58:50.885000Z"
+  },
+  {
+    "id": "86d4c7e9v",
+    "name": "Bid Bond Architecture Design & Usecase",
+    "description": "",
+    "status": "in progress",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4c7e9v",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [
+      "bid-bond"
+    ],
+    "due_date": "2026-09-24T22:30:00Z",
+    "date_created": "2026-09-22T11:28:50.032000Z",
+    "date_updated": "2026-09-23T06:07:13.737000Z"
+  },
+  {
+    "id": "86d4ca2n2",
+    "name": "Mock UI development",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4ca2n2",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [
+      "bid-bond"
+    ],
+    "due_date": "2026-09-22T22:30:00Z",
+    "date_created": "2026-09-23T06:05:13.353000Z",
+    "date_updated": "2026-09-23T06:53:53.644000Z"
+  },
+  {
+    "id": "86d4c0nwv",
+    "name": "Training Received on Thu 24-Sep-2026",
+    "description": "Attend the scheduled Current GenAI / Agentic AI Training Session session and capture the concepts relevant to current project work.",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4c0nwv",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [
+      "training"
+    ],
+    "due_date": "2026-09-23T22:30:00Z",
+    "date_created": "2026-09-20T20:58:10.521000Z",
+    "date_updated": "2026-09-23T07:19:21.815000Z"
+  },
+  {
+    "id": "86d4c0nww",
+    "name": "Training Received on Fri 25-Sep-2026",
+    "description": "Attend the scheduled Current GenAI / Agentic AI Training Session session and capture the concepts relevant to current project work.",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4c0nww",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [
+      "training"
+    ],
+    "due_date": "2026-09-24T22:30:00Z",
+    "date_created": "2026-09-20T20:58:10.844000Z",
+    "date_updated": "2026-09-23T07:19:25.547000Z"
+  },
+  {
+    "id": "86d4c0nx3",
+    "name": "Learning on Wed 23-Sep-2026",
+    "description": "Revised Retrieval-Augmented Generation (RAG) by incorporating advanced retrieval techniques beyond simple keyword matching. Instead of relying solely on dense embeddings, it leverages traditional ranking methods like BM25 and hybrid approaches that combine lexical and semantic signals. The goal is to improve precision and recall in retrieving contextually relevant documents for downstream tasks. Alongside implementation, the process involves reviewing and synthesizing research papers on retrieval algorithms, hybrid search strategies, and evaluation benchmarks to ensure the design is grounded in state-of-the-art methods. This dual focus—practical experimentation with retrieval models and theoretical study of academic work—creates a robust foundation for building more reliable and explainable RAG systems.",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4c0nx3",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [
+      "training"
+    ],
+    "due_date": "2026-09-22T22:30:00Z",
+    "date_created": "2026-09-20T20:58:12.005000Z",
+    "date_updated": "2026-09-23T07:19:29.313000Z"
+  },
+  {
+    "id": "86d4c0nx4",
+    "name": "Learning on Thur 24-Sep-2026",
+    "description": "Review the day's training material, revise key concepts, and complete related learning/assignment work.",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4c0nx4",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [
+      "training"
+    ],
+    "due_date": "2026-09-23T22:30:00Z",
+    "date_created": "2026-09-20T20:58:12.284000Z",
+    "date_updated": "2026-09-23T07:19:33.159000Z"
+  },
+  {
+    "id": "86d4c0nx5",
+    "name": "Learning on Fri 25-Sep-2026",
+    "description": "Review the day's training material, revise key concepts, and complete related learning/assignment work.",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4c0nx5",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [
+      "training"
+    ],
+    "due_date": "2026-09-24T22:30:00Z",
+    "date_created": "2026-09-20T20:58:12.320000Z",
+    "date_updated": "2026-09-23T07:19:36.884000Z"
+  },
+  {
+    "id": "86d4c0nwu",
+    "name": "Training Received on Wed 23-Sep-2026",
+    "description": "Attend the scheduled Current GenAI / Agentic AI Training Session session and capture the concepts relevant to current project work.",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4c0nwu",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [
+      "training"
+    ],
+    "due_date": "2026-09-22T22:30:00Z",
+    "date_created": "2026-09-20T20:58:10.519000Z",
+    "date_updated": "2026-09-23T12:46:36.335000Z"
+  },
+  {
+    "id": "86d4ca2pc",
+    "name": "Project Business Requirement documentation",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4ca2pc",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [
+      "bid-bond"
+    ],
+    "due_date": "2026-09-22T22:30:00Z",
+    "date_created": "2026-09-23T06:05:52.223000Z",
+    "date_updated": "2026-09-23T13:18:42.132000Z"
+  },
+  {
+    "id": "86d4cb89p",
+    "name": "Smart Personal AI Assistant",
+    "description": "Build a Smart Personal AI Command Center that integrates multiple tools such as Gmail, GitHub, ClickUp, and Tavily to provide a unified view of activities, tasks, and updates. The system should include a dashboard for summaries and actionable insights, along with an Agent Mode for planning, task decomposition, tool usage, and execution. Implement suitable multi-agent architecture, long-term memory, and guardrails where required. Follow the assignment requirements and submit the completed work here: \nAssignment Document",
+    "status": "in progress",
+    "priority": "high",
+    "url": "https://app.clickup.com/t/86d4cb89p",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [
+      "training"
+    ],
+    "due_date": "2026-09-24T22:30:00Z",
+    "date_created": "2026-09-23T14:31:46.033000Z",
+    "date_updated": "2026-09-23T14:57:49.995000Z"
+  },
+  {
+    "id": "86d4cfb8k",
+    "name": "Training & Self-Learning",
+    "description": "Fixed daily block: attending the cohort training session, self-learning and assignment work, and the weekly trainee evaluation.",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfb8k",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [
+      "training"
+    ],
+    "due_date": "2026-10-08T22:30:00Z",
+    "date_created": "2026-09-25T08:19:07.248000Z",
+    "date_updated": "2026-09-25T08:36:53.109000Z"
+  },
+  {
+    "id": "86d4cfbr0",
+    "name": "Weekly Trainee Evaluation - Week 4",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbr0",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": null,
+    "date_created": "2026-09-25T08:35:14.499000Z",
+    "date_updated": "2026-09-25T08:38:05.901000Z"
+  },
+  {
+    "id": "86d4cfbqt",
+    "name": "Self-Learning & Assignment - Database Integration",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbqt",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": null,
+    "date_created": "2026-09-25T08:35:04.826000Z",
+    "date_updated": "2026-09-25T08:38:05.901000Z"
+  },
+  {
+    "id": "86d4cfbqh",
+    "name": "Attend Training - Database Integration",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbqh",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": null,
+    "date_created": "2026-09-25T08:34:56.137000Z",
+    "date_updated": "2026-09-25T08:38:05.901000Z"
+  },
+  {
+    "id": "86d4cfbq8",
+    "name": "Self-Learning & Assignment - FastAPI Deep Dive",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbq8",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": null,
+    "date_created": "2026-09-25T08:34:47.146000Z",
+    "date_updated": "2026-09-25T08:38:05.901000Z"
+  },
+  {
+    "id": "86d4cfbq3",
+    "name": "Attend Training - FastAPI Deep Dive",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbq3",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": null,
+    "date_created": "2026-09-25T08:34:37.555000Z",
+    "date_updated": "2026-09-25T08:38:05.901000Z"
+  },
+  {
+    "id": "86d4cfbpy",
+    "name": "Self-Learning & Assignment - Building an AI API",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbpy",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": null,
+    "date_created": "2026-09-25T08:34:30.988000Z",
+    "date_updated": "2026-09-25T08:38:05.901000Z"
+  },
+  {
+    "id": "86d4cfbpt",
+    "name": "Attend Training - Building an AI API",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbpt",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": null,
+    "date_created": "2026-09-25T08:34:24.523000Z",
+    "date_updated": "2026-09-25T08:38:05.901000Z"
+  },
+  {
+    "id": "86d4cfbpq",
+    "name": "Self-Learning & Assignment - FastAPI Fundamentals",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbpq",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": null,
+    "date_created": "2026-09-25T08:34:15.208000Z",
+    "date_updated": "2026-09-25T08:38:05.901000Z"
+  },
+  {
+    "id": "86d4cfbpm",
+    "name": "Attend Training - FastAPI Fundamentals",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbpm",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": null,
+    "date_created": "2026-09-25T08:34:08.995000Z",
+    "date_updated": "2026-09-25T08:38:05.901000Z"
+  },
+  {
+    "id": "86d4cfbpk",
+    "name": "Self-Learning & Assignment - Agentic RAG Architecture",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbpk",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": null,
+    "date_created": "2026-09-25T08:34:02.164000Z",
+    "date_updated": "2026-09-25T08:38:05.901000Z"
+  },
+  {
+    "id": "86d4cfbpc",
+    "name": "Attend Training - Agentic RAG Architecture",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbpc",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": null,
+    "date_created": "2026-09-25T08:33:55.137000Z",
+    "date_updated": "2026-09-25T08:38:05.901000Z"
+  },
+  {
+    "id": "86d4cfbp9",
+    "name": "Weekly Trainee Evaluation - Week 3",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbp9",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": null,
+    "date_created": "2026-09-25T08:33:41.913000Z",
+    "date_updated": "2026-09-25T08:38:05.901000Z"
+  },
+  {
+    "id": "86d4cfbp2",
+    "name": "Self-Learning & Assignment - Advanced RAG",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbp2",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": null,
+    "date_created": "2026-09-25T08:33:34.200000Z",
+    "date_updated": "2026-09-25T08:38:05.901000Z"
+  },
+  {
+    "id": "86d4cfbnw",
+    "name": "Attend Training - Advanced RAG",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbnw",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": null,
+    "date_created": "2026-09-25T08:33:23.819000Z",
+    "date_updated": "2026-09-25T08:38:05.901000Z"
+  },
+  {
+    "id": "86d4cfbnu",
+    "name": "Self-Learning & Assignment - RAG Fundamentals",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbnu",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": null,
+    "date_created": "2026-09-25T08:33:16.629000Z",
+    "date_updated": "2026-09-25T08:38:05.901000Z"
+  },
+  {
+    "id": "86d4cfbaz",
+    "name": "Attend Training - RAG Fundamentals",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbaz",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": null,
+    "date_created": "2026-09-25T08:21:16.207000Z",
+    "date_updated": "2026-09-25T08:38:05.901000Z"
+  },
+  {
+    "id": "86d4cfba5",
+    "name": "Attend Training - LangGraph Advanced",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfba5",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": "2026-09-27T22:30:00Z",
+    "date_created": "2026-09-25T08:20:33.787000Z",
+    "date_updated": "2026-09-25T08:59:31.914000Z"
+  },
+  {
+    "id": "86d4cfba8",
+    "name": "Self-Learning & Assignment - LangGraph Advanced",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfba8",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": "2026-09-27T22:30:00Z",
+    "date_created": "2026-09-25T08:20:38.993000Z",
+    "date_updated": "2026-09-25T08:59:39.219000Z"
+  },
+  {
+    "id": "86d4cfbam",
+    "name": "Attend Training - Multi-Agent Frameworks (CrewAI)",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbam",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": "2026-09-28T22:30:00Z",
+    "date_created": "2026-09-25T08:20:57.821000Z",
+    "date_updated": "2026-09-25T09:00:37.794000Z"
+  },
+  {
+    "id": "86d4cfbau",
+    "name": "Self-Learning & Assignment - Multi-Agent Frameworks (CrewAI)",
+    "description": "",
+    "status": "to do",
+    "priority": "normal",
+    "url": "https://app.clickup.com/t/86d4cfbau",
+    "assignees": [
+      "Chitranshu Sanket"
+    ],
+    "assignee_ids": [
+      "308542359"
+    ],
+    "tags": [],
+    "due_date": "2026-09-28T22:30:00Z",
+    "date_created": "2026-09-25T08:21:06.481000Z",
+    "date_updated": "2026-09-25T09:00:44.143000Z"
+  }
+]

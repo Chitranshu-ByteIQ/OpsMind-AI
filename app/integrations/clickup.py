@@ -1,3 +1,7 @@
+from __future__ import annotations
+
+from typing import Any
+
 import requests
 
 from app.config import settings
@@ -19,12 +23,13 @@ class ClickUpIntegration:
             "Content-Type": "application/json",
         }
 
-    def _get(self, endpoint: str):
+    def _get(self, endpoint: str, *, params: list[tuple[str, Any]] | dict[str, Any] | None = None):
         """Send a GET request to ClickUp."""
 
         response = requests.get(
             f"{self.BASE_URL}{endpoint}",
             headers=self.headers,
+            params=params,
             timeout=30,
         )
 
@@ -76,7 +81,7 @@ class ClickUpIntegration:
         self,
         space_id: str,
     ) -> list[ClickUpList]:
-        """Get lists inside a ClickUp space."""
+        """Get folderless lists inside a ClickUp space."""
 
         data = self._get(
             f"/space/{space_id}/list"
@@ -98,89 +103,105 @@ class ClickUpIntegration:
     def get_tasks(
         self,
         list_id: str,
+        *,
+        assignee_ids: list[str] | None = None,
+        include_closed: bool = False,
     ) -> list[ClickUpTask]:
         """Get tasks from a ClickUp list."""
 
-        data = self._get(
-            f"/list/{list_id}/task"
-        )
+        params: list[tuple[str, Any]] = [
+            ("archived", "false"),
+            ("subtasks", "true"),
+            ("include_timl", "true"),
+            ("include_closed", str(include_closed).lower()),
+        ]
+        for assignee_id in assignee_ids or []:
+            params.append(("assignees[]", assignee_id))
 
-        tasks = []
+        return self._get_paginated_tasks(f"/list/{list_id}/task", params)
 
-        for task in data.get("tasks", []):
+    def get_filtered_team_tasks(
+        self,
+        team_id: str,
+        *,
+        assignee_ids: list[str] | None = None,
+        include_closed: bool = False,
+    ) -> list[ClickUpTask]:
+        """Get tasks matching filters anywhere in a ClickUp workspace."""
 
-            assignees = [
-                user["username"]
-                for user in task.get(
-                    "assignees",
-                    [],
-                )
-                if user.get("username")
-            ]
-            assignee_ids = [
-                str(user["id"])
-                for user in task.get("assignees", [])
-                if user.get("id") is not None
-            ]
+        params: list[tuple[str, Any]] = [
+            ("subtasks", "true"),
+            ("include_closed", str(include_closed).lower()),
+            ("order_by", "updated"),
+            ("reverse", "true"),
+        ]
+        for assignee_id in assignee_ids or []:
+            params.append(("assignees[]", assignee_id))
 
-            tags = [
-                tag["name"]
-                for tag in task.get(
-                    "tags",
-                    [],
-                )
-                if tag.get("name")
-            ]
+        return self._get_paginated_tasks(f"/team/{team_id}/task", params)
 
-            due_date = task.get("due_date")
-            date_created = task.get("date_created")
-            date_updated = task.get("date_updated")
+    def _get_paginated_tasks(self, endpoint: str, params: list[tuple[str, Any]]) -> list[ClickUpTask]:
+        tasks: list[ClickUpTask] = []
+        page = 0
 
-            tasks.append(
-                ClickUpTask(
-                    id=task["id"],
-                    name=task["name"],
-                    description=task.get(
-                        "description"
-                    ),
-                    status=task.get(
-                        "status",
-                        {},
-                    ).get(
-                        "status"
-                    ),
-                    priority=(
-                        task.get("priority") or {}
-                    ).get("priority"),
-                    url=task.get("url"),
-                    assignees=assignees,
-                    assignee_ids=assignee_ids,
-                    tags=tags,
-                    due_date=(
-                        self._timestamp_to_datetime(
-                            due_date
-                        )
-                        if due_date
-                        else None
-                    ),
-                    date_created=(
-                        self._timestamp_to_datetime(
-                            date_created
-                        )
-                        if date_created
-                        else None
-                    ),
-                    date_updated=(
-                        self._timestamp_to_datetime(
-                            date_updated
-                        )
-                        if date_updated
-                        else None
-                    ),
-                )
-            )
+        while True:
+            data = self._get(endpoint, params=[*params, ("page", page)])
+            page_tasks = data.get("tasks", [])
+            tasks.extend(self._task_from_api(task) for task in page_tasks)
+
+            if len(page_tasks) < 100:
+                break
+            page += 1
 
         return tasks
+
+    def _task_from_api(self, task: dict[str, Any]) -> ClickUpTask:
+        assignees = [
+            user["username"]
+            for user in task.get("assignees", [])
+            if user.get("username")
+        ]
+        assignee_ids = [
+            str(user["id"])
+            for user in task.get("assignees", [])
+            if user.get("id") is not None
+        ]
+        tags = [
+            tag["name"]
+            for tag in task.get("tags", [])
+            if tag.get("name")
+        ]
+
+        due_date = task.get("due_date")
+        date_created = task.get("date_created")
+        date_updated = task.get("date_updated")
+
+        return ClickUpTask(
+            id=task["id"],
+            name=task["name"],
+            description=task.get("description"),
+            status=task.get("status", {}).get("status") or "unknown",
+            priority=(task.get("priority") or {}).get("priority"),
+            url=task.get("url"),
+            assignees=assignees,
+            assignee_ids=assignee_ids,
+            tags=tags,
+            due_date=(
+                self._timestamp_to_datetime(due_date)
+                if due_date
+                else None
+            ),
+            date_created=(
+                self._timestamp_to_datetime(date_created)
+                if date_created
+                else None
+            ),
+            date_updated=(
+                self._timestamp_to_datetime(date_updated)
+                if date_updated
+                else None
+            ),
+        )
 
     @staticmethod
     def _timestamp_to_datetime(

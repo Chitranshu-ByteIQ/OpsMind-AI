@@ -1,9 +1,9 @@
 {
   "source": "clickup",
   "status": "success",
-  "last_successful_sync": "2026-09-25T07:36:58.739134+00:00",
+  "last_successful_sync": "2026-09-25T09:01:22.271297+00:00",
   "last_error": null,
-  "item_count": 0,
+  "item_count": 32,
   "authenticated_user": {
     "id": 308542359,
     "username": "Chitranshu Sanket",
@@ -15,6 +15,6 @@
     "global_font_support": false,
     "timezone": "Asia/Calcutta"
   },
-  "visible_task_count": 0,
-  "confirmed_assigned_count": 0
+  "visible_task_count": 32,
+  "confirmed_assigned_count": 32
 }

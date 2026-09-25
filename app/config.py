@@ -5,6 +5,8 @@ from typing import Optional
 from dotenv import load_dotenv
 
 load_dotenv()
+if not os.path.exists(".env") and os.path.exists(".env "):
+    load_dotenv(".env ")
 
 
 class Settings(BaseSettings):
@@ -30,7 +32,7 @@ class Settings(BaseSettings):
     cors_origins: str = "http://localhost:8501,http://127.0.0.1:8501"
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=(".env", ".env "),
         env_file_encoding="utf-8",
         extra="ignore",
     )
